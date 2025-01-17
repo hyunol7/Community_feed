@@ -1,16 +1,21 @@
 package org.example.Common;
 
-public class PostisivelntengerCounter {
+public class PositivelntegerCounter {
     private int count;
 
-    public PostisivelntengerCounter(){
+    public PositivelntegerCounter(){
         this.count = 0;
     }
+
+    public PositivelntegerCounter(int count){
+        this.count = count;
+    }
+
     public void increase() {
         this.count++;
     }
 
-    public void descrease() {
+    public void decrease() {
         if(count <= 0){
             return;
         }

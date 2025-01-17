@@ -5,14 +5,14 @@ import org.example.User.application.Interface.UserRepository;
 import org.example.User.application.dto.CreateUserRequestDto;
 import org.example.User.domain.User;
 import org.example.User.domain.UserInfo;
+import org.example.fake.FakeObjectFactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UserServiceTest {
 
-    private final UserRepository userRepository = new FakeUsreRepository();
-    private final UserService userService = new UserService(userRepository);
+    private final UserService userService = FakeObjectFactory.getUserService();
 
     @Test
     void givenUser_whenFindByUserUser_thenCanfindUser() {
@@ -26,6 +26,6 @@ public class UserServiceTest {
         User foundUser = userService.getUser(saveUser.getId());
         UserInfo userInfo = foundUser.getInfo();
         assertEquals(foundUser.getId(), saveUser.getId());
-        assertEquals("test", "");
+        assertEquals("test", userInfo.getName());
     }
 }

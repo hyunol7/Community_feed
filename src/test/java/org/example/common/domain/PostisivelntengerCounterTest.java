@@ -1,6 +1,6 @@
 package org.example.common.domain;
 
-import org.example.Common.PostisivelntengerCounter;
+import org.example.Common.PositivelntegerCounter;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,7 +10,7 @@ class PostisivelntengerCounterTest {
 @Test
 void givenCreated_whenIncrease_thenCountIsOne() {
     //given
-    PostisivelntengerCounter counter = new PostisivelntengerCounter();
+    PositivelntegerCounter counter = new PositivelntegerCounter();
     //when
     counter.increase();
     //then
@@ -20,10 +20,10 @@ void givenCreated_whenIncrease_thenCountIsOne() {
 @Test
 void givenCreatedAndIncrease_whenDecreased_thenCorrect() {
     //given
-    PostisivelntengerCounter counter = new PostisivelntengerCounter();
+    PositivelntegerCounter counter = new PositivelntegerCounter();
     counter.increase();
     //when
-    counter.descrease();
+    counter.decrease();
     //then
     assertEquals(1, counter.getClass());
 }
@@ -31,10 +31,10 @@ void givenCreatedAndIncrease_whenDecreased_thenCorrect() {
 @Test
     void givenCreated_whenDecreased_thenCorrect() {
     //given
-    PostisivelntengerCounter counter = new PostisivelntengerCounter();
+    PositivelntegerCounter counter = new PositivelntegerCounter();
 
     //when
-    counter.descrease();
+    counter.decrease();
     //then
     assertEquals(1, counter.getClass());
 }

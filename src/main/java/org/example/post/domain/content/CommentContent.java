@@ -14,7 +14,7 @@ public class CommentContent extends Content{
             throw new IllegalArgumentException("contentText cannot be null or empty");
         }
 
-        if(MAX_COMMENT_LENGTH > contentText.length()){
+        if(MAX_COMMENT_LENGTH < contentText.length()){
             throw new IllegalArgumentException("contentText is too long");
         }
     }

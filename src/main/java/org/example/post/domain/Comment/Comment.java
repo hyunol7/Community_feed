@@ -1,8 +1,9 @@
 package org.example.post.domain.Comment;
 
-import org.example.Common.PostisivelntengerCounter;
+import org.example.Common.PositivelntegerCounter;
 import org.example.User.domain.User;
 import org.example.post.domain.Post;
+import org.example.post.domain.content.CommentContent;
 import org.example.post.domain.content.Content;
 
 public class Comment {
@@ -11,10 +12,13 @@ public class Comment {
     private final Post post;
     private final User author;
     private final Content content;
-    private final PostisivelntengerCounter likeCount;
+    private final PositivelntegerCounter likeCount;
 
+    public static Comment createComment(Post post, User author, String content){
+        return new Comment(null, author, new CommentContent(content), post);
+    }
 
-    public Comment(Long id, Post post, User author, Content content) {
+    public Comment(Long id, User author, Content content, Post post) {
         if(author == null) {
             throw new IllegalArgumentException("author cannot be null");
         }
@@ -29,7 +33,8 @@ public class Comment {
         this.post = post;
         this.author = author;
         this.content = content;
-        this.likeCount = new PostisivelntengerCounter();
+        this.likeCount = new PositivelntegerCounter();
+
     }
 
     public void like(User user){
@@ -38,14 +43,38 @@ public class Comment {
         }
         likeCount.increase();
     }
-    public void unlike(User user){
-        this.likeCount.descrease();
+    public void unlike(){
+        this.likeCount.dscrease();
     }
 
     public void updateComment(User user, String updateContent){
-        if(this.author.equals(user)){
+        if(!this.author.equals(user)){
             throw new IllegalArgumentException("You cannot update a user");
         }
         this.content.updateContent(updateContent);
+    }
+
+    public int getLikeCount(){
+        return likeCount.getCount();
+    }
+
+    public String getContent(){
+        return content.getContentText();
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public Post getPost(){
+        return post;
+    }
+
+    public User getAuthor(){
+        return author;
+    }
+
+    public Content getContentContent(){
+        return content;
     }
 }

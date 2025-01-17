@@ -1,15 +1,22 @@
 package org.example.User.domain;
 
-import org.example.Common.PostisivelntengerCounter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import org.example.Common.PositivelntegerCounter;
 
 import java.util.Objects;
 
+@Getter
+@Builder
+@AllArgsConstructor
 public class User {
 
-    private final Long id;
-    private final UserInfo userInfo;
-    private final PostisivelntengerCounter followingCount;
-    private final PostisivelntengerCounter followerCount;
+    private Long id;
+
+    private UserInfo userInfo;
+    private PositivelntegerCounter followingCount;
+    private PositivelntegerCounter followerCount;
 
     public User(Long id, UserInfo userInfo) {
         if (userInfo == null) {
@@ -18,8 +25,8 @@ public class User {
 
         this.id = id;
         this.userInfo = userInfo;
-        this.followerCount = new PostisivelntengerCounter();
-        this.followingCount = new PostisivelntengerCounter();
+        this.followerCount = new PositivelntegerCounter();
+        this.followingCount = new PositivelntegerCounter();
     }
 
     public void follow(User targetUser) {
@@ -44,7 +51,7 @@ public class User {
     }
 
     private void decreaseFollowDecrease() {
-        followerCount.descrease();
+        followerCount.decrease();
     }
 
     @Override
@@ -64,10 +71,6 @@ public class User {
         return Objects.hashCode(id);
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public int followerCount() {
         return followerCount.getCount();
     }
@@ -76,10 +79,13 @@ public class User {
         return followingCount.getCount();
     }
 
-    public UserInfo getInfo() {
-        return userInfo;
+    public String getProfileImage(){
+        return userInfo.getProfileImageUrl();
     }
 
+    public String name(){
+        return userInfo.getName();
+    }
 
 }
 

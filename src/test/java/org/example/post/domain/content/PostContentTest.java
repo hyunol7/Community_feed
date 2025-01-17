@@ -57,6 +57,57 @@ class PostContentTest {
         assertThrows(IllegalArgumentException.class, () -> new PostContent(value));
     }
 
+    @Test
+    void givenContentLengthIsOk_whenUpdated_thenReturnUpdateContent(){
+        //given
+        String content = "this is a test content";
+        PostContent postContent = new PostContent(content);
+
+        //when
+        String updateContent = "this is a update content";
+        postContent.updateContent(updateContent);
+
+        //then
+        assertEquals(updateContent, postContent.contentText);
+    }
+
+    @Test
+    void givenContentLengthIsOver_whenUpdated_thenThrowError(){
+        //given
+        String content = "this is a test content";
+        PostContent postContent = new PostContent(content);
+
+        //when,then
+        String value = "a".repeat(501);
+        assertThrows(IllegalArgumentException.class, () -> postContent.updateContent(value));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"가,나,다,라,마"})
+    void givenContentLengthIsOverAndKorean_whenUpdated_thenThrowError(String koreanWord){
+        //given
+        String content = "this is a test content";
+        PostContent postContent = new PostContent(content);
+
+        //when, then
+        String value = koreanWord.repeat(501);
+        assertThrows(IllegalArgumentException.class, () -> postContent.updateContent(value));
+
+    }
+
+    @Test
+    void givenContentLengthIsUser_whenUpdated_thenThrowError(){
+        //given
+        String content = "this is a test content";
+        PostContent postContent = new PostContent(content);
+
+        //when, then
+        String value = "a".repeat(4);
+        assertThrows(IllegalArgumentException.class, () -> postContent.updateContent(value));
+    }
+
+
+
 
 
 
