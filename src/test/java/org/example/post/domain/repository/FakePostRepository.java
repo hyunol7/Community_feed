@@ -1,7 +1,7 @@
 package org.example.post.domain.repository;
 
 import org.example.post.domain.Post;
-import org.example.post.domain.application.interfaces.PostRepository;
+import org.example.post.application.interfaces.PostRepository;
 import org.example.post.domain.content.PostContent;
 
 import java.util.HashMap;

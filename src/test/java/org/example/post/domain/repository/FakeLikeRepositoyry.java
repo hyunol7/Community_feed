@@ -1,10 +1,9 @@
 package org.example.post.domain.repository;
 
-import org.example.User.domain.User;
+import org.example.user.domain.User;
 import org.example.post.domain.Comment.Comment;
 import org.example.post.domain.Post;
-import org.example.post.domain.application.interfaces.LIkeRepository;
-import org.example.post.domain.application.interfaces.PostRepository;
+import org.example.post.application.interfaces.LIkeRepository;
 
 import java.util.HashMap;
 import java.util.HashSet;

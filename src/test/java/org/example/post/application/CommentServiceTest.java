@@ -1,9 +1,8 @@
 package org.example.post.application;
 
 import org.example.post.domain.Comment.Comment;
-import org.example.post.domain.application.dto.LIkeRequestDto;
-import org.example.post.domain.application.dto.UpdateCommentRequestDto;
-import org.example.post.domain.application.dto.UpdatePostRequestDto;
+import org.example.post.application.dto.LIkeRequestDto;
+import org.example.post.application.dto.UpdateCommentRequestDto;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

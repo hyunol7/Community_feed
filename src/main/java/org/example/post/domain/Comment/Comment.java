@@ -1,11 +1,15 @@
 package org.example.post.domain.Comment;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.example.Common.PositivelntegerCounter;
-import org.example.User.domain.User;
+import org.example.user.domain.User;
 import org.example.post.domain.Post;
 import org.example.post.domain.content.CommentContent;
 import org.example.post.domain.content.Content;
 
+@Builder
+@AllArgsConstructor
 public class Comment {
 
     private final Long id;
@@ -44,7 +48,7 @@ public class Comment {
         likeCount.increase();
     }
     public void unlike(){
-        this.likeCount.dscrease();
+        this.likeCount.decrease();
     }
 
     public void updateComment(User user, String updateContent){

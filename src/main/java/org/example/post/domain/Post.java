@@ -1,11 +1,17 @@
 package org.example.post.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import org.example.Common.PositivelntegerCounter;
-import org.example.User.domain.User;
+import org.example.user.domain.User;
 import org.example.post.domain.content.Content;
 import org.example.post.domain.content.PostContent;
 import org.example.post.domain.content.PostPublicationState;
 
+@Getter
+@Builder
+@AllArgsConstructor
 public class Post {
 
     private final User author;
@@ -68,14 +74,6 @@ public class Post {
     public String getContent(){
             return content.getContentText();
         }
-
-    public Long getId(){
-        return id;
-        }
-
-    public User getAuthor(){
-        return author;
-    }
 
     public Content getContentObject(){
         return content;

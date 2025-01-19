@@ -1,7 +1,7 @@
 package org.example.post.domain.repository;
 
 import org.example.post.domain.Comment.Comment;
-import org.example.post.domain.application.interfaces.CommentRepository;
+import org.example.post.application.interfaces.CommentRepository;
 
 import java.util.HashMap;
 import java.util.Map;

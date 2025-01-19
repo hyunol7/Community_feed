@@ -1,7 +1,7 @@
 package org.example.post.domain;
 
-import org.example.User.domain.User;
-import org.example.User.domain.UserInfo;
+import org.example.user.domain.User;
+import org.example.user.domain.UserInfo;
 import org.example.post.domain.content.PostContent;
 import org.example.post.domain.content.PostPublicationState;
 import org.junit.jupiter.api.Test;

@@ -1,15 +1,9 @@
 package org.example.post.application;
 
-import org.example.User.application.UserService;
-import org.example.User.application.dto.CreateUserRequestDto;
-import org.example.User.domain.User;
-import org.example.fake.FakeObjectFactory;
 import org.example.post.domain.Post;
-import org.example.post.domain.application.PostService;
-import org.example.post.domain.application.dto.CreateCommentRequestDto;
-import org.example.post.domain.application.dto.CreatePostRequestDto;
-import org.example.post.domain.application.dto.LIkeRequestDto;
-import org.example.post.domain.application.dto.UpdatePostRequestDto;
+import org.example.post.application.dto.CreatePostRequestDto;
+import org.example.post.application.dto.LIkeRequestDto;
+import org.example.post.application.dto.UpdatePostRequestDto;
 import org.example.post.domain.content.PostPublicationState;
 import org.junit.jupiter.api.Test;
 
