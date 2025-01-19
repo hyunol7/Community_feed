@@ -2,7 +2,8 @@ package org.example.post.domain.Comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.example.Common.PositivelntegerCounter;
+
+import org.example.Common.domain.PositiveIntegerCounter;
 import org.example.user.domain.User;
 import org.example.post.domain.Post;
 import org.example.post.domain.content.CommentContent;
@@ -16,7 +17,7 @@ public class Comment {
     private final Post post;
     private final User author;
     private final Content content;
-    private final PositivelntegerCounter likeCount;
+    private final PositiveIntegerCounter likeCount;
 
     public static Comment createComment(Post post, User author, String content){
         return new Comment(null, author, new CommentContent(content), post);
@@ -37,7 +38,7 @@ public class Comment {
         this.post = post;
         this.author = author;
         this.content = content;
-        this.likeCount = new PositivelntegerCounter();
+        this.likeCount = new PositiveIntegerCounter();
 
     }
 

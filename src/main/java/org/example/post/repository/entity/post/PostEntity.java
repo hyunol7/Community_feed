@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.example.Common.PositivelntegerCounter;
+import org.example.Common.domain.PositiveIntegerCounter;
 import org.example.Common.repository.entity.TimeBaseEntity;
 import org.example.user.repository.entity.UserEntity;
 import org.example.post.domain.Post;
@@ -47,7 +47,7 @@ public class PostEntity extends TimeBaseEntity {
                 .author(author.toUser())
                 .content(new PostContent(content))
                 .state(state)
-                .likeCount(new PositivelntegerCounter(likeCount))
+                .likeCount(new PositiveIntegerCounter(likeCount))
                 .build();
     }
 

@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.example.Common.PositivelntegerCounter;
+import org.example.Common.domain.PositiveIntegerCounter;
 import org.example.Common.repository.entity.TimeBaseEntity;
 import org.example.user.repository.entity.UserEntity;
 import org.example.post.domain.Comment.Comment;
@@ -48,7 +48,7 @@ public class CommentEntity extends TimeBaseEntity {
                .author(author.toUser())
                .post(post.toPost())
                .content(new CommentContent(content))
-               .likeCount(new PositivelntegerCounter(likeCounter))
+               .likeCount(new PositiveIntegerCounter(likeCounter))
                .build();
    }
 }

@@ -3,9 +3,10 @@ package org.example.user.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.example.Common.PositivelntegerCounter;
+import org.example.Common.domain.PositiveIntegerCounter;
 
 import java.util.Objects;
+
 
 @Getter
 @Builder
@@ -15,8 +16,8 @@ public class User {
     private Long id;
 
     private UserInfo userInfo;
-    private PositivelntegerCounter followingCount;
-    private PositivelntegerCounter followerCount;
+    private PositiveIntegerCounter followingCount;
+    private PositiveIntegerCounter followerCount;
 
     public User(Long id, UserInfo userInfo) {
         if (userInfo == null) {
@@ -25,8 +26,8 @@ public class User {
 
         this.id = id;
         this.userInfo = userInfo;
-        this.followerCount = new PositivelntegerCounter();
-        this.followingCount = new PositivelntegerCounter();
+        this.followerCount = new PositiveIntegerCounter();
+        this.followingCount = new PositiveIntegerCounter();
     }
 
     public void follow(User targetUser) {

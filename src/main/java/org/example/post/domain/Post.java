@@ -3,7 +3,7 @@ package org.example.post.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import org.example.Common.PositivelntegerCounter;
+import org.example.Common.domain.PositiveIntegerCounter;
 import org.example.user.domain.User;
 import org.example.post.domain.content.Content;
 import org.example.post.domain.content.PostContent;
@@ -17,7 +17,7 @@ public class Post {
     private final User author;
     private final Long id;
     private final Content content;
-    private final PositivelntegerCounter likeCount;
+    private final PositiveIntegerCounter likeCount;
     private PostPublicationState state;
 
 
@@ -44,7 +44,7 @@ public class Post {
         this.id = id;
         this.author =  author;
         this.content = content;
-        this.likeCount = new PositivelntegerCounter();
+        this.likeCount = new PositiveIntegerCounter();
         this.state = state;
     }
 

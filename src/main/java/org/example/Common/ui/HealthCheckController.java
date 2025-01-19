@@ -1,4 +1,4 @@
-package org.example.Common.domain.UI;
+package org.example.Common.ui;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

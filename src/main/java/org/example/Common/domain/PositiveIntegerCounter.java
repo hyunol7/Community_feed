@@ -1,13 +1,16 @@
-package org.example.Common;
+package org.example.Common.domain;
 
-public class PositivelntegerCounter {
+import lombok.Getter;
+
+@Getter
+public class PositiveIntegerCounter {
     private int count;
 
-    public PositivelntegerCounter(){
+    public PositiveIntegerCounter(){
         this.count = 0;
     }
 
-    public PositivelntegerCounter(int count){
+    public PositiveIntegerCounter(int count){
         this.count = count;
     }
 
@@ -16,14 +19,11 @@ public class PositivelntegerCounter {
     }
 
     public void decrease() {
-        if(count <= 0){
+        if(count < 0){
             return;
         }
         this.count--;
     }
 
-    public int getCount(){
-        return count;
-    }
 }
 

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.example.Common.PositivelntegerCounter;
+import org.example.Common.domain.PositiveIntegerCounter;
 import org.example.Common.repository.entity.TimeBaseEntity;
 import org.example.user.domain.User;
 import org.example.user.domain.UserInfo;
@@ -36,8 +36,8 @@ public class UserEntity  extends TimeBaseEntity {
         return User.builder()
                 .id(id)
                 .userInfo(new UserInfo(name, profileImage))
-                .followerCount(new PositivelntegerCounter(followerCount))
-                .followingCount(new PositivelntegerCounter(followerCount))
+                .followerCount(new PositiveIntegerCounter(followerCount))
+                .followingCount(new PositiveIntegerCounter(followerCount))
                 .build();
     }
 }
