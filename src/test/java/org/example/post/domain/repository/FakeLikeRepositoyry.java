@@ -1,7 +1,7 @@
 package org.example.post.domain.repository;
 
 import org.example.user.domain.User;
-import org.example.post.domain.Comment.Comment;
+import org.example.post.domain.comment.Comment;
 import org.example.post.domain.Post;
 import org.example.post.application.interfaces.LIkeRepository;
 

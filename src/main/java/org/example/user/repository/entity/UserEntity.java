@@ -8,12 +8,14 @@ import org.example.Common.domain.PositiveIntegerCounter;
 import org.example.Common.repository.entity.TimeBaseEntity;
 import org.example.user.domain.User;
 import org.example.user.domain.UserInfo;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @Table(name = "community_user")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@DynamicUpdate
 public class UserEntity  extends TimeBaseEntity {
 
     @Id

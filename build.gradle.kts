@@ -22,7 +22,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
     //mysql
-    runtimeOnly("mysql:mysql-connector-java:8.0.32")
+   // runtimeOnly("mysql:mysql-connector-java:8.0.32")
+
+    //mariadb
+    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.1.2")
 
     //querydsl
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
@@ -41,6 +44,7 @@ dependencies {
 
     //kotlin
     implementation(kotlin("stdlib-jdk8"))
+
 }
 
 tasks.test {

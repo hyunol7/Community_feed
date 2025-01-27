@@ -1,4 +1,4 @@
-package org.example.post.domain.Comment;
+package org.example.post.domain.comment;
 
 import org.example.user.domain.User;
 import org.example.user.domain.UserInfo;
@@ -12,12 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CommentTest {
 
-    private final UserInfo info = new UserInfo("name", "url");
-    private final User user = new User(1L, info);
-    private final User otherUser = new User(2L, info);
+    private final User user = new User(1L, new UserInfo("name", "url"));
+    private final User otherUser = new User(2L, new UserInfo("name", "url"));
 
     private final Post post = new Post(1L, user, new PostContent("content"));
-    private final Comment comment = new Comment(1L, user, new CommentContent("content"), post);
+    private final Comment comment = new Comment(1L,post, user, new CommentContent("content"));
 
     @Test
     void givenCommentCreated_whenLike_thenLikeCountShouldBe1() {

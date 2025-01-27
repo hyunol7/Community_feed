@@ -1,4 +1,6 @@
 package org.example.user.application.dto;
 
-public record FollowUserRequestDto(Long UserId, Long targetUserId) {
+import jakarta.validation.constraints.NotNull;
+
+public record FollowUserRequestDto(@NotNull Long userId, @NotNull Long targetUserId) {
 }

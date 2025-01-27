@@ -14,7 +14,7 @@ import org.example.Common.repository.entity.TimeBaseEntity;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@IdClass(UserRelationEntity.class)
+@IdClass(UserRelationIdEntity.class)
 public class UserRelationEntity extends TimeBaseEntity {
 
     @Id

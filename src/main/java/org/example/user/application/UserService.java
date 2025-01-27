@@ -2,6 +2,7 @@ package org.example.user.application;
 
 import org.example.user.application.Interface.UserRepository;
 import org.example.user.application.dto.CreateUserRequestDto;
+import org.example.user.application.dto.GetUserResponseDto;
 import org.example.user.domain.User;
 import org.example.user.domain.UserInfo;
 import org.springframework.stereotype.Service;
@@ -24,4 +25,9 @@ public class UserService {
     public User getUser(Long id){
         return userRepository.findById(id);
     }
+
+   public GetUserResponseDto getUserProfile(Long id){
+        User user = getUser(id);
+        return new GetUserResponseDto(user);
+   }
 }

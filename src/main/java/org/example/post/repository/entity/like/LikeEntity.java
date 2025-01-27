@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.user.domain.User;
-import org.example.post.domain.Comment.Comment;
+import org.example.post.domain.comment.Comment;
 import org.example.post.domain.Post;
 
 @Entity

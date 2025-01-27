@@ -1,6 +1,5 @@
-package org.example.post.domain.Comment;
+package org.example.post.domain.comment;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import org.example.Common.domain.PositiveIntegerCounter;
@@ -10,25 +9,54 @@ import org.example.post.domain.content.CommentContent;
 import org.example.post.domain.content.Content;
 
 @Builder
-@AllArgsConstructor
 public class Comment {
 
     private final Long id;
     private final Post post;
     private final User author;
-    private final Content content;
+    private Content content;
     private final PositiveIntegerCounter likeCount;
 
-    public static Comment createComment(Post post, User author, String content){
-        return new Comment(null, author, new CommentContent(content), post);
+
+    public Comment(long id, Post post, User user, CommentContent content) {
+        this.id = id;
+        this.post = post;
+        this.author = user;
+        this.content = content;
+        this.likeCount = new PositiveIntegerCounter(); // 기본값으로 초기화
     }
 
-    public Comment(Long id, User author, Content content, Post post) {
-        if(author == null) {
-            throw new IllegalArgumentException("author cannot be null");
-        }
-        if(post == null){
+    public Comment(long id, User author, Content content, Post post) {
+        if (post == null) {
             throw new IllegalArgumentException("Post cannot be null");
+        }
+        if (author == null) {
+            throw new IllegalArgumentException("Author cannot be null");
+        }
+        if (content == null) {
+            throw new IllegalArgumentException("Content cannot be null");
+        }
+
+        this.id = id;
+        this.post = post;
+        this.author = author;
+        this.content = content;
+        this.likeCount = new PositiveIntegerCounter(); // 기본값 초기화
+    }
+
+
+
+    public static Comment createComment(Long id, Post post, User author, String content) {
+        return new Comment(id, post, author, new CommentContent(content), new PositiveIntegerCounter());
+    }
+
+
+    public Comment(Long id, Post post, User author, Content content, PositiveIntegerCounter likeCount) {
+        if(post == null) {
+            throw new IllegalArgumentException("Post cannot be null");
+        }
+        if(author == null){
+            throw new IllegalArgumentException("author cannot be null");
         }
         if(content == null){
             throw new IllegalArgumentException("Content cannot be null");
@@ -50,6 +78,10 @@ public class Comment {
     }
     public void unlike(){
         this.likeCount.decrease();
+    }
+
+    public Comment(Long id, Post post, User author, String content) {
+        this(id, post, author, new CommentContent(content), new PositiveIntegerCounter());
     }
 
     public void updateComment(User user, String updateContent){

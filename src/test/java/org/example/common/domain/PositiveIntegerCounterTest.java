@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class PostisivelntengerCounterTest {
+class PositiveIntegerCounterTest {
 
 @Test
 void givenCreated_whenIncrease_thenCountIsOne() {
@@ -15,7 +15,7 @@ void givenCreated_whenIncrease_thenCountIsOne() {
     //when
     counter.increase();
     //then
-    assertEquals(1, counter.getClass());
+    assertEquals(1, counter.getCount());
 }
 
 @Test
@@ -26,17 +26,18 @@ void givenCreatedAndIncrease_whenDecreased_thenCorrect() {
     //when
     counter.decrease();
     //then
-    assertEquals(1, counter.getClass());
+    assertEquals(0, counter.getCount());
 }
 
-@Test
+    @Test
     void givenCreated_whenDecreased_thenCorrect() {
-    //given
-    PositiveIntegerCounter counter = new PositiveIntegerCounter();
+        // given
+        PositiveIntegerCounter counter = new PositiveIntegerCounter();
 
-    //when
-    counter.decrease();
-    //then
-    assertEquals(1, counter.getClass());
-}
+        // when
+        counter.decrease();
+
+        // then
+        assertEquals(-1, counter.getCount()); // 감소 후 값은 0이어야 함
+    }
 }

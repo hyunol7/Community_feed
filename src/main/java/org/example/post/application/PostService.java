@@ -1,5 +1,7 @@
 package org.example.post.application;
 
+import jakarta.transaction.Transactional;
+import org.example.post.application.dto.UpdatePostRequestDto;
 import org.example.user.application.UserService;
 import org.example.user.domain.User;
 import org.example.post.domain.Post;
@@ -7,7 +9,9 @@ import org.example.post.application.dto.CreatePostRequestDto;
 import org.example.post.application.dto.LIkeRequestDto;
 import org.example.post.application.interfaces.LIkeRepository;
 import org.example.post.application.interfaces.PostRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PostService {
 
     private final UserService userService;
@@ -23,7 +27,7 @@ public class PostService {
     }
 
     public Post getPost(Long id){
-        return postRepository.findById(id).orElseThrow(()->new IllegalArgumentException("this is a test post"));
+        return postRepository.findById(id);
     }
 
 public Post createPost(CreatePostRequestDto dto){
@@ -32,9 +36,10 @@ public Post createPost(CreatePostRequestDto dto){
     return postRepository.save(post);
 }
 
-    public Post updatePost(Long id, CreatePostRequestDto dto){
-        Post post = getPost(id);
+    public Post updatePost(Long postId, UpdatePostRequestDto dto){
+        Post post = getPost(postId);
         User user = userService.getUser(dto.userId());
+
         post.updatePost(user, dto.content(), dto.state());
         return postRepository.save(post);
     }
