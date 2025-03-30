@@ -12,7 +12,7 @@ import java.util.Set;
 
 import static javax.swing.UIManager.put;
 
-public class FakeLikeRepositoyry implements LIkeRepository {
+public class FakeLikeRepository implements LIkeRepository {
 
 
     private final Map<Post, Set<User>> postLikes = new HashMap<>();

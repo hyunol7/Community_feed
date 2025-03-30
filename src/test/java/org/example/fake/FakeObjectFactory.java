@@ -12,7 +12,7 @@ import org.example.post.application.interfaces.CommentRepository;
 import org.example.post.application.interfaces.LIkeRepository;
 import org.example.post.application.interfaces.PostRepository;
 import org.example.post.domain.repository.FakeCommentRepository;
-import org.example.post.domain.repository.FakeLikeRepositoyry;
+import org.example.post.domain.repository.FakeLikeRepository;
 import org.example.post.domain.repository.FakePostRepository;
 
 public class FakeObjectFactory {
@@ -21,7 +21,7 @@ public class FakeObjectFactory {
     private static final UserRelationRepository fakeUserRelationRepository = new FakeUserRelationRepository();
     private static final PostRepository fakePostRepository = new FakePostRepository();
     private static final CommentRepository fakeCommentRepository = new FakeCommentRepository();
-    private static final LIkeRepository fakeLikeRepository = new FakeLikeRepositoyry();
+    private static final LIkeRepository fakeLikeRepository = new FakeLikeRepository();
 
     private static final UserService userService = new UserService(fakeUserRepository);
     private static final UserRelationService userRelationService = new UserRelationService(userService ,fakeUserRelationRepository);

@@ -11,7 +11,7 @@ import java.util.List;
 public interface JpaPostRepository extends JpaRepository<PostEntity, Long> {
 
     @Query("SELECT p.id FROM PostEntity p WHERE p.author.id = :authorId")
-    List<Long> findAllIdsByAuthorId(Long authorId);
+    List<PostEntity> findAllIdsByAuthorId(Long authorId);
 
 
     @Modifying

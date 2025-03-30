@@ -25,7 +25,12 @@ dependencies {
    // runtimeOnly("mysql:mysql-connector-java:8.0.32")
 
     //mariadb
-    runtimeOnly("org.mariadb.jdbc:mariadb-java-client:3.1.2")
+    implementation("org.mariadb.jdbc:mariadb-java-client:3.3.2")
+
+
+    //Lombok
+    implementation("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
 
     //querydsl
     implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
@@ -33,14 +38,12 @@ dependencies {
     annotationProcessor("jakarta.annotation:jakarta.annotation-api")
     annotationProcessor("jakarta.persistence:jakarta.persistence-api")
 
-    //Lombok
-    implementation("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-
     //testing
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.rest-assured:rest-assured:5.5.0")
+    runtimeOnly("com.h2database:h2")
 
     //kotlin
     implementation(kotlin("stdlib-jdk8"))
