@@ -28,8 +28,21 @@ public class SignUpAcceptanceTest extends AcceptanceTestTemplate {
         //then
         String token = this.getEmailToken(email);
         assertNotNull(token);
-        assertEquals(500, code);
+        assertEquals(0, code);
 
+
+    }
+
+    @Test
+    void givenInvalidEmail_whenEmailSend_thenVerificationTokenNotSaved(){
+        //given
+        SendEmailRequestDto dto = new SendEmailRequestDto("abcd");
+
+        //when
+        Integer code = requestSendEmail(dto);
+
+        //then
+        assertEquals(400, code);
 
     }
 
