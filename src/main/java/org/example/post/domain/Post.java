@@ -11,7 +11,6 @@ import org.example.post.domain.content.PostContent;
 import org.example.post.domain.content.PostPublicationState;
 
 @Getter
-@Builder
 @AllArgsConstructor
 public class Post {
 
@@ -22,25 +21,15 @@ public class Post {
     private PostPublicationState state;
 
 
-    public static Post createPost(Long id, User author,String content, PostPublicationState state){
-        return new Post(id, author, new PostContent(content), state);
-    }
 
-    public static Post createDefaultPost(Long id, User author, String content){
-        return new Post(id, author, new PostContent(content), PostPublicationState.PUBLIC);
-    }
-
-    public Post(Long id, User author, Content content){
-        this(id, author, content, PostPublicationState.PUBLIC);
-    }
-
-
-    public Post(Long id, User author, Content content, PostPublicationState state) {
-        if(author == null) {
-            throw new IllegalArgumentException("athoUser cannot be null");
+    @Builder
+    public Post(Long id, User author, Content content, PostPublicationState state, PositiveIntegerCounter positiveIntegerCounter) {
+        if (author == null) {
+            throw new IllegalArgumentException("author should not be null");
         }
-
-
+        if (content == null) {
+            throw new IllegalArgumentException("content should not be null or empty");
+        }
 
         this.id = id;
         this.author =  author;
@@ -49,9 +38,17 @@ public class Post {
         this.state = state;
     }
 
+    public Post(Long id, User author, Content content) {
+        this(id, author, content, PostPublicationState.PUBLIC, new PositiveIntegerCounter());
+    }
+
+    public Post(Long id, User author, String content) {
+        this(id, author, new PostContent(content), PostPublicationState.PUBLIC, new PositiveIntegerCounter());
+    }
+
     public void like(User user){
         if(this.author.equals(user)){
-            throw new IllegalArgumentException("athoUser cannot be null");
+            throw new IllegalArgumentException("author cannot like own null");
         }
         likeCount.increase();
     }

@@ -1,5 +1,6 @@
 package org.example.Common.domain;
 
+
 import lombok.Getter;
 
 @Getter
@@ -19,10 +20,10 @@ public class PositiveIntegerCounter {
     }
 
     public void decrease() {
-        if(count < 0){
-            return;
+        if (count <= 0) {
+           return;
         }
-        this.count--;
+        count--;
     }
 
 }

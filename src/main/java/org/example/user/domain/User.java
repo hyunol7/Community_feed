@@ -30,6 +30,10 @@ public class User {
         this.followingCount = new PositiveIntegerCounter();
     }
 
+    public User(String name, String profileImageUrl) {
+        this(null, new UserInfo(name, profileImageUrl));
+    }
+
     public void follow(User targetUser) {
         if (targetUser.equals(this)) {
             throw new IllegalArgumentException("You can't follow a user");
@@ -43,7 +47,7 @@ public class User {
             throw new IllegalArgumentException("You can't unfollow a user");
 
         }
-        followingCount.increase();
+        followingCount.decrease();
         targetUser.decreaseFollowDecrease();
     }
 

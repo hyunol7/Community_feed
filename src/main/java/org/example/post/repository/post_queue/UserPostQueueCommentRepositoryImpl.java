@@ -2,11 +2,8 @@ package org.example.post.repository.post_queue;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.LifecycleState;
 import org.example.post.repository.entity.post.PostEntity;
-import org.example.post.repository.entity.post.UserPostQueueEntity;
 import org.example.post.repository.jpa.JpaPostRepository;
-import org.example.post.repository.jpa.JpaUserPostQueueRepository;
 import org.example.user.repository.entity.UserEntity;
 import org.example.user.repository.jpa.JpaUserRelationRepository;
 import org.springframework.stereotype.Repository;

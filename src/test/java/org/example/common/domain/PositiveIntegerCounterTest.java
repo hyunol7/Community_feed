@@ -38,6 +38,6 @@ void givenCreatedAndIncrease_whenDecreased_thenCorrect() {
         counter.decrease();
 
         // then
-        assertEquals(-1, counter.getCount()); // 감소 후 값은 0이어야 함
+        assertEquals(0, counter.getCount()); // 감소 후 값은 0이어야 함
     }
 }

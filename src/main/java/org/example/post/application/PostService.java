@@ -32,7 +32,7 @@ public class PostService {
 
 public Post createPost(CreatePostRequestDto dto){
     User author = userService.getUser(dto.userId());
-    Post post = Post.createPost(null, author, dto.content(), dto.state());
+    Post post = new Post(null, author, dto.content());
     return postRepository.save(post);
 }
 

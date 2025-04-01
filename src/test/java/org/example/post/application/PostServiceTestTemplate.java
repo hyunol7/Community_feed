@@ -9,7 +9,7 @@ import org.example.post.application.dto.CreateCommentRequestDto;
 import org.example.post.application.dto.CreatePostRequestDto;
 import org.example.post.domain.content.PostPublicationState;
 
-class PostApplicationTestTemplate {
+class PostServiceTestTemplate {
 
 
     final UserService userService = FakeObjectFactory.getUserService();
