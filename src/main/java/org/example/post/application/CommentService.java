@@ -33,29 +33,10 @@ public class CommentService {
         return commentRepository.findById(id);
     }
     public Comment createComment(CreateCommentRequestDto dto) {
-        if (dto.postId() == null || dto.userId() == null || dto.content() == null || dto.content().isBlank()) {
-            throw new IllegalArgumentException("Invalid input data");
-        }
-
-        System.out.println("DTO received: " + dto);
-
         Post post = postService.getPost(dto.postId());
-        User user = userService.getUser(dto.userId());
-
-        System.out.println("Post retrieved: " + post);
-        System.out.println("User retrieved: " + user);
-
-        if (post == null || user == null) {
-            throw new IllegalArgumentException("Post or User cannot be null");
-        }
-
-        Comment comment = Comment.createComment(null, post, user, dto.content());
-        System.out.println("Comment created: " + comment);
-
-        Comment savedComment = commentRepository.save(comment);
-        System.out.println("Saved Comment: " + savedComment);
-
-        return savedComment;
+        User author = userService.getUser(dto.userId());
+        Comment comment = new Comment(null, post, author, dto.content());
+        return commentRepository.save(comment);
     }
 
 

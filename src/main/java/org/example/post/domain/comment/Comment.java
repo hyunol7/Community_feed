@@ -2,13 +2,14 @@ package org.example.post.domain.comment;
 
 import lombok.Builder;
 
+import lombok.Getter;
 import org.example.Common.domain.PositiveIntegerCounter;
 import org.example.user.domain.User;
 import org.example.post.domain.Post;
 import org.example.post.domain.content.CommentContent;
 import org.example.post.domain.content.Content;
 
-@Builder
+@Getter
 public class Comment {
 
     private final Long id;
@@ -18,15 +19,13 @@ public class Comment {
     private final PositiveIntegerCounter likeCount;
 
 
-    public Comment(long id, Post post, User user, CommentContent content) {
-        this.id = id;
-        this.post = post;
-        this.author = user;
-        this.content = content;
-        this.likeCount = new PositiveIntegerCounter(); // 기본값으로 초기화
+    public Comment(Long id, Post post, User author, CommentContent content) {
+        this(id, post, author, content, new PositiveIntegerCounter());
     }
 
-    public Comment(long id, User author, Content content, Post post) {
+
+    @Builder
+    public Comment(long id, User author, Content content, Post post,PositiveIntegerCounter likeCount) {
         if (post == null) {
             throw new IllegalArgumentException("Post cannot be null");
         }
@@ -41,8 +40,16 @@ public class Comment {
         this.post = post;
         this.author = author;
         this.content = content;
-        this.likeCount = new PositiveIntegerCounter(); // 기본값 초기화
+        this.likeCount = likeCount; // 기본값 초기화
     }
+
+    public Comment(long id, Post post, User author, Content contentContent, int likeCount, Long id1, Post post1, User author1, PositiveIntegerCounter likeCount1) {
+        this.id = id1;
+        this.post = post1;
+        this.author = author1;
+        this.likeCount = likeCount1;
+    }
+
 
 
 

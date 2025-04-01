@@ -1,10 +1,13 @@
 package org.example.post.domain.common;
 
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
 public class DateTimeInfo {
 
     private boolean isEdited;
+    @Getter
     private LocalDateTime dateTime;
 
     public DateTimeInfo() {
@@ -18,8 +21,5 @@ public class DateTimeInfo {
 
     public boolean isEdited() {
         return isEdited;
-    }
-    public LocalDateTime getDateTime() {
-        return dateTime;
     }
 }

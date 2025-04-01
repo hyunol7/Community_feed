@@ -50,7 +50,7 @@ public class CommentEntity extends TimeBaseEntity {
                .author(author.toUser())
                .post(post.toPost())
                .content(new CommentContent(content))
-               .likeCount(new PositiveIntegerCounter(likeCount))
+               .likeCount(new PositiveIntegerCounter(likeCount != null ? likeCount : 0))
                .build();
    }
 }

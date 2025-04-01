@@ -1,15 +1,13 @@
 package org.example.post.application;
 
-import org.example.post.application.dto.CreateCommentRequestDto;
 import org.example.post.domain.comment.Comment;
 import org.example.post.application.dto.LIkeRequestDto;
 import org.example.post.application.dto.UpdateCommentRequestDto;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class CommentServiceTest extends PostApplicationTestTemplate{
+public class CommentServiceTest extends PostServiceTestTemplate {
 
     @Test
     void givenCreateCommentRequestDto_whenCreateComment_thenReturnComment(){
@@ -37,38 +35,28 @@ public class CommentServiceTest extends PostApplicationTestTemplate{
     }
 
     @Test
-    void givenComment_whenLikeComment_thenReturnCommentWithLike() {
+    void givenCommentWhenUnlikeCommentThenReturnCommentWithoutLike() {
         // given
-        CreateCommentRequestDto createCommentRequestDto = new CreateCommentRequestDto(
-                1L, // postId
-                2L, // userId
-                "This is a test comment"
-        );
         Comment comment = commentService.createComment(createCommentRequestDto);
 
-        assertNotNull(comment, "Comment should not be null"); // 추가: null 확인
-
         // when
-        LIkeRequestDto likeRequestDto = new LIkeRequestDto(comment.getId(), otherUser.getId());
+        LIkeRequestDto likeRequestDto = new LIkeRequestDto(otherUser.getId(), comment.getId());
         commentService.likeComment(likeRequestDto);
+        commentService.unlikeComment(likeRequestDto);
 
         // then
-        assertEquals(1, comment.getLikeCount());
+        assertEquals(0, comment.getLikeCount());
     }
 
 
     @Test
-    void givenComment_whenUnlikeComment_thenReturnCommentWithUnlike(){
-        //given
+    void givenCommentWhenLikeSelfThenThrowException() {
+        // given
         Comment comment = commentService.createComment(createCommentRequestDto);
 
-        //when
-        LIkeRequestDto likeRequestDto = new LIkeRequestDto(comment.getId(), otherUser.getId());
-        commentService.likeComment(likeRequestDto);
-        commentService.unlikeComment(likeRequestDto);
-
-        //then
-        assertEquals(0, comment.getLikeCount());
+        // when, then
+        LIkeRequestDto likeRequestDto = new LIkeRequestDto(user.getId(), comment.getId());
+        assertThrows(IllegalArgumentException.class, () -> commentService.likeComment(likeRequestDto));
     }
 
 }

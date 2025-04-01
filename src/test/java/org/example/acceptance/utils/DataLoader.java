@@ -4,12 +4,17 @@ import static org.example.acceptance.steps.UserAcceptanceSteps.createUser;
 import static org.example.acceptance.steps.UserAcceptanceSteps.followUser;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import lombok.RequiredArgsConstructor;
 import org.example.user.application.dto.CreateUserRequestDto;
 import org.example.user.application.dto.FollowUserRequestDto;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class DataLoader {
+
+    @PersistenceContext
     private EntityManager entityManager;
 
     public void loadData(){
