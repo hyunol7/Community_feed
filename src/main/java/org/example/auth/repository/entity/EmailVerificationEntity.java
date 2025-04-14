@@ -20,6 +20,7 @@ public class EmailVerificationEntity {
     private boolean isVerified;
 
     public EmailVerificationEntity(String email, String token) {
+        this.id = null;
         this.email = email;
         this.token = token;
         this.isVerified = false;
@@ -30,10 +31,14 @@ public class EmailVerificationEntity {
     }
 
     public void updateToken(String token){
-        this.isVerified = true;
+        this.token = token;
     }
 
     public void verify() {
         this.isVerified = true;
+    }
+
+    public boolean hasSameToken(String token) {
+        return this.token.equals(token);
     }
 }

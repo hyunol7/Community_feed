@@ -1,6 +1,7 @@
 package org.example.post.repository.post_queue;
 
 import org.example.post.repository.entity.post.PostEntity;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

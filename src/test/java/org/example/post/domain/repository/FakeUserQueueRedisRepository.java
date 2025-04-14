@@ -2,13 +2,15 @@ package org.example.post.domain.repository;
 
 import org.example.post.repository.entity.post.PostEntity;
 import org.example.post.repository.post_queue.UserQueueRedisRepository;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Primary
 @Repository
-//@Profile("test")
+@Profile("test")
 public class FakeUserQueueRedisRepository implements UserQueueRedisRepository {
 
     private final Map<Long, Set<PostEntity>> queue = new HashMap<>();
