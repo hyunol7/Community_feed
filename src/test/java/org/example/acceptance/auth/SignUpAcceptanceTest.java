@@ -1,19 +1,15 @@
 package org.example.acceptance.auth;
 
 import org.example.acceptance.utils.AcceptanceTestTemplate;
+import org.example.auth.application.dto.CreateUserAuthRequestDto;
 import org.example.auth.application.dto.SendEmailRequestDto;
-import org.example.auth.application.interfaces.EmailSendRepository;
-import org.example.auth.application.interfaces.EmailVerificationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.util.UUID;
 
-import static org.example.acceptance.steps.SignUpAcceptanceSteps.requestSendEmail;
-import static org.example.acceptance.steps.SignUpAcceptanceSteps.requestVerifyEmail;
+import static org.example.acceptance.steps.SignUpAcceptanceSteps.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -83,7 +79,7 @@ public class SignUpAcceptanceTest extends AcceptanceTestTemplate {
 
         //when
         boolean isEmailVerified = isEmailVerified(email);
-        assertEquals(400, code);
+        assertEquals(0, code);
         assertTrue(isEmailVerified);
     }
 
@@ -112,6 +108,40 @@ public class SignUpAcceptanceTest extends AcceptanceTestTemplate {
         //then
         assertEquals(400, code);
 
+    }
+
+    @Test
+    void givenVerifiedEmail_whenRegister_thenUserRegistered(){
+        // given
+        requestSendEmail(new SendEmailRequestDto(email));
+        String token = getEmailToken(email);
+        requestVerifyEmail(email, token);
+
+        // when
+        CreateUserAuthRequestDto dto = new CreateUserAuthRequestDto(
+                email,
+                "password",
+                "USER",
+                "name",
+                "profileImageUrl"
+        );
+        Integer code = registerUser(dto);
+
+        // then
+        assertEquals(0, code);
+    }
+
+    @Test
+    void givenUnverifiedEmail_whenRegister_thenThrowError(){
+        //given
+        requestSendEmail(new SendEmailRequestDto(email));
+
+        //when
+        CreateUserAuthRequestDto dto = new CreateUserAuthRequestDto(email, "password", "USER", "name", "profileImageUrl");
+        Integer code = registerUser(dto);
+
+        //then
+        assertEquals(400, code);
     }
 
 }
