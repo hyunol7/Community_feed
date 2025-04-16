@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class PasswordTest {
     @Test
     void givenPassword_whenMatchSamePassword_thenReturnTrue() {
-        Password password = Password.createPassword("password");
+        Password password = Password.createEncriptPassword("password");
 
         assertTrue(password.matchPassword("password"));
     }
 
     @Test
     void givenPassword_whenMatchDifferentPassword_thenReturnTrue() {
-        Password password = Password.createPassword("password");
+        Password password = Password.createEncriptPassword("password");
 
         assertTrue(password.matchPassword("password"));
     }
@@ -26,6 +26,6 @@ class PasswordTest {
     @ParameterizedTest
     @NullAndEmptySource
     void givenPasswordIsNull_thenThrowError(String password) {
-        assertThrows(IllegalArgumentException.class, () -> Password.createPassword(null));
+        assertThrows(IllegalArgumentException.class, () -> Password.createEncriptPassword(null));
     }
 }
