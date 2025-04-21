@@ -1,13 +1,11 @@
-package org.example.post.repository;
+package org.example.post.repository.post_queue;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.post.application.interfaces.PostRepository;
 import org.example.post.domain.Post;
 import org.example.post.repository.entity.post.PostEntity;
-import org.example.post.repository.entity.post.UserPostQueueEntity;
 import org.example.post.repository.jpa.JpaPostRepository;
-import org.example.post.repository.post_queue.UserPostQueueCommentRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

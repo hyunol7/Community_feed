@@ -9,6 +9,11 @@ import org.example.Common.repository.entity.TimeBaseEntity;
 import org.example.user.domain.User;
 import org.example.user.domain.UserInfo;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "community_user")
@@ -16,6 +21,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @AllArgsConstructor
 @Getter
 @DynamicUpdate
+@EntityListeners(AuditingEntityListener.class)
 public class UserEntity  extends TimeBaseEntity {
 
     @Id
@@ -25,6 +31,9 @@ public class UserEntity  extends TimeBaseEntity {
     private String profileImage;
     private Integer followingCount;
     private Integer followerCount;
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDate regDate;
 
     public UserEntity(User user) {
         this.id = user.getId();

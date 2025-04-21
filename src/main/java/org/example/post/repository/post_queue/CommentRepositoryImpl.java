@@ -1,4 +1,4 @@
-package org.example.post.repository;
+package org.example.post.repository.post_queue;
 
 import lombok.RequiredArgsConstructor;
 import org.example.post.application.interfaces.CommentRepository;

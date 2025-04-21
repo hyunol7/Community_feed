@@ -1,4 +1,4 @@
-package org.example.post.repository;
+package org.example.post.repository.post_queue;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.post.application.interfaces.LIkeRepository;
 import org.example.post.domain.comment.Comment;
 import org.example.post.domain.Post;
-import org.example.post.repository.entity.comment.CommentEntity;
 import org.example.post.repository.entity.like.LikeEntity;
 import org.example.post.repository.entity.post.PostEntity;
 import org.example.post.repository.jpa.JpaCommentRepository;
