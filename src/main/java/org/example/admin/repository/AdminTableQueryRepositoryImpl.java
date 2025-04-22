@@ -1,0 +1,61 @@
+package org.example.admin.repository;
+
+import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import lombok.RequiredArgsConstructor;
+import org.example.admin.ui.dto.GetTableListResponse;
+import org.example.admin.ui.dto.user.GetUserTableRequestDto;
+import org.example.admin.ui.dto.user.GetUserTableResponseDto;
+import org.example.admin.ui.query.AdminTableQueryRepository;
+import org.example.auth.repository.entity.QUserAuthEntity;
+import org.example.user.repository.entity.QUserEntity;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+@RequiredArgsConstructor
+public class AdminTableQueryRepositoryImpl implements AdminTableQueryRepository {
+    private final JPAQueryFactory queryFactory;
+    private static final QUserAuthEntity userAuthEntity = QUserAuthEntity.userAuthEntity;
+    private static final QUserEntity userEntity = QUserEntity.userEntity;
+
+    @Override
+    public GetTableListResponse<GetUserTableResponseDto> getUserTableData(GetUserTableRequestDto requestDto) {
+
+        int total = queryFactory.select(userEntity.id)
+                .from(userEntity)
+                .where(likeName(requestDto.getName()))
+                .fetch()
+                .size();
+        List<GetUserTableResponseDto> result = queryFactory
+                .select(
+                        Projections.fields(
+                                GetUserTableResponseDto.class,
+                                userEntity.id.as("id"),
+                                userAuthEntity.email.as("email"),
+                                userEntity.name.as("name"),
+                                userAuthEntity.role.as("role"),
+                                userEntity.regDate.as("createAt"),
+                                userEntity.updateDate.as("updateAt"),
+                                userAuthEntity.lastLoginAt.as("lastLoginAt")
+                        )
+                )
+                .from(userEntity)
+                .join(userAuthEntity).on(userAuthEntity.userId.eq(userEntity.id))
+                .where(likeName(requestDto.getName()))
+                .orderBy(userEntity.id.desc())
+                .offset(requestDto.getOffset())
+                .limit(requestDto.getLimit())
+                .fetch();
+        return new GetTableListResponse<>(total, result);
+    }
+
+    private BooleanExpression likeName(String name){
+        if(name == null || name.isBlank()){
+            return null;
+        }
+        return userEntity.name.like(name + "%");
+    }
+}

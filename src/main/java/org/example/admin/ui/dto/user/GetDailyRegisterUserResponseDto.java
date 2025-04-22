@@ -1,4 +1,4 @@
-package org.example.admin.ui.dto;
+package org.example.admin.ui.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
