@@ -3,6 +3,8 @@ package org.example.admin.ui;
 import lombok.RequiredArgsConstructor;
 import org.example.admin.repository.UserStatusQueryRepositoryImpl;
 import org.example.admin.ui.dto.GetTableListResponse;
+import org.example.admin.ui.dto.posts.GetPostTableRequestDto;
+import org.example.admin.ui.dto.posts.GetPostTableResponseDto;
 import org.example.admin.ui.dto.user.GetUserTableRequestDto;
 import org.example.admin.ui.dto.user.GetUserTableResponseDto;
 import org.example.admin.ui.query.AdminTableQueryRepository;
@@ -39,6 +41,18 @@ public class AdminController {
         GetTableListResponse<GetUserTableResponseDto> result = adminTableQueryRepository.getUserTableData(dto);
         mv.addObject("requestDto", dto);
         mv.addObject("userList", result.getTableData());
+        mv.addObject("totalCount", result.getTotalCount());
+        return mv;
+    }
+
+    @GetMapping("/posts")
+    public ModelAndView posts(GetPostTableRequestDto dto) {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("posts");
+        GetTableListResponse<GetPostTableResponseDto> result = adminTableQueryRepository.getPostTableData(dto);
+        mv.addObject("requestDto", dto);
+        mv.addObject("postList", result.getTableData());
         mv.addObject("totalCount", result.getTotalCount());
         return mv;
     }
