@@ -1,11 +1,9 @@
 package org.example.admin.ui.dto.user;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -13,7 +11,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class GetDailyRegisterUserResponseDto {
 
-    private LocalDate date;
+    private LocalDateTime date;
     private Long count;
+
+    public String getDate() {
+        return date != null ? date.toLocalDate().toString() : "";
+    }
+
 
 }

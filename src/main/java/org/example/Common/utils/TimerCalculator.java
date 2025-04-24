@@ -13,9 +13,8 @@ public class TimerCalculator {
     }
 
 
-        public static LocalDate getCurrentDate(int daysAgo) {
-        LocalDate currDate = LocalDate.now();
-        return currDate.minusDays(daysAgo);
+        public static LocalDateTime getCurrentDate(int daysAgo) {
+            return LocalDateTime.now().minusDays(daysAgo);
         }
 
         public static String getFormattedDate(LocalDateTime dateTime) {

@@ -29,6 +29,8 @@ public class AdminController {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("index");
 
+        var result = repository.getDailyRegisterUserStarts(7);
+        System.out.println("일별 가입자 수 데이터: " + result);
         mv.addObject("result", repository.getDailyRegisterUserStarts(7));
         return mv;
     }
@@ -47,13 +49,18 @@ public class AdminController {
 
     @GetMapping("/posts")
     public ModelAndView posts(GetPostTableRequestDto dto) {
-        ModelAndView mv = new ModelAndView();
+        System.out.println("✅ 요청 DTO: " + dto);
 
+        ModelAndView mv = new ModelAndView();
         mv.setViewName("posts");
-        GetTableListResponse<GetPostTableResponseDto> result = adminTableQueryRepository.getPostTableData(dto);
+
+        GetTableListResponse<GetPostTableResponseDto> result =
+                adminTableQueryRepository.getPostTableData(dto); // 이 줄에서 오류 가능성 높음
+
         mv.addObject("requestDto", dto);
         mv.addObject("postList", result.getTableData());
         mv.addObject("totalCount", result.getTotalCount());
         return mv;
     }
+
 }

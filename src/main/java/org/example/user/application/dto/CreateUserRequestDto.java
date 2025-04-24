@@ -1,5 +1,8 @@
 package org.example.user.application.dto;
 
+import lombok.Getter;
+
+@Getter
 public class CreateUserRequestDto {
 
     private final String name;
@@ -10,10 +13,4 @@ public class CreateUserRequestDto {
         this.ProfileImageUrl = profileImageUrl;
     }
 
-    public String getName() {
-        return name;
-    }
-    public String getProfileImageUrl() {
-        return ProfileImageUrl;
-    }
 }

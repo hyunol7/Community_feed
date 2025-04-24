@@ -25,14 +25,14 @@ public class UserStatusQueryRepositoryImpl implements UserStatusQueryRepository 
                 .select(
                         Projections.fields(
                                 GetDailyRegisterUserResponseDto.class,
-                                userEntity.regDate.as("date"),
+                                userEntity.createdDate.as("date"),
                                 userEntity.count().as("count")
                         )
                 )
                 .from(userEntity)
-                .where(userEntity.regDate.after(TimerCalculator.getCurrentDate(beforeDays)))
-                .groupBy(userEntity.regDate)
-                .orderBy(userEntity.regDate.asc())
+                .where(userEntity._super.createdDate.after(TimerCalculator.getCurrentDate(beforeDays)))
+                .groupBy(userEntity._super.createdDate)
+                .orderBy(userEntity._super.createdDate.asc())
                 .fetch();
     }
 }

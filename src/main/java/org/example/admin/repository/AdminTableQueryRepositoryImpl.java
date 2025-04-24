@@ -42,8 +42,8 @@ public class AdminTableQueryRepositoryImpl implements AdminTableQueryRepository 
                                 userAuthEntity.email.as("email"),
                                 userEntity.name.as("name"),
                                 userAuthEntity.role.as("role"),
-                                userEntity.regDate.as("createAt"),
-                                userEntity.updateDate.as("updateAt"),
+                                userEntity.createdDate.as("createTime"),   // ✅ 여기가 핵심!
+                                userEntity.updateDate.as("updateTime"),    // ✅ 여기도
                                 userAuthEntity.lastLoginAt.as("lastLoginAt")
                         )
                 )
@@ -86,8 +86,8 @@ public class AdminTableQueryRepositoryImpl implements AdminTableQueryRepository 
                                userEntity.id.as("userId"),
                                userEntity.name.as("userName"),
                                postEntity.content.as("content"),
-                               postEntity.createdDate.as("createDate"),
-                               postEntity.updateDate.as("updateDate")
+                               postEntity.createdDate.as("createdAt"),
+                               postEntity.updateDate.as("updatedAt")
                        )
                )
                .from(postEntity)
@@ -98,7 +98,7 @@ public class AdminTableQueryRepositoryImpl implements AdminTableQueryRepository 
                .orderBy(postEntity.id.desc())
                .fetch();
 
-        return null;
+        return new GetTableListResponse<>(total, result);
     }
 
     private BooleanExpression likeName(String name){

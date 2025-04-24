@@ -21,8 +21,8 @@ public class GetPostTableResponseDto {
     @Getter
     private String userName;
     private String content;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public String getContent(){
         if(content.length() > 10){
@@ -30,8 +30,12 @@ public class GetPostTableResponseDto {
         }
         return content;
     }
-    public String getCreateAt(){
-        return TimerCalculator.getFormattedDate(createAt);
+    public String getCreatedAt(){
+        return TimerCalculator.getFormattedDate(createdAt);
+    }
+
+    public String getUpdatedAt() {
+        return TimerCalculator.getFormattedDate(updatedAt);
     }
 
 }
